@@ -15,7 +15,7 @@ const io = require('socket.io')(http, {
 
 require('dotenv-flow').config({ default_node_env: 'development' });
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const debug = false;
 
 if (debug) {
