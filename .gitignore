@@ -3,6 +3,7 @@ dist
 
 package-lock.json
 yarn.lock
+.env
 
 uploads/*
 tmp/*
