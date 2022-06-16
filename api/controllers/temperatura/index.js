@@ -17,19 +17,19 @@ router.get('/list', async (req, res) => {
 
 router.get('/add/:value', async (req, res) => {
     try {
-        const temp = req.params.value;
+        const temp = req.params.value.Replace('C', '');
         const data = {temperatura: `${temp}°C`}
         const result = await Service.Temperatura.addContent(data);
-        const numTemp = parseFloat(temp);
-        if(numTemp > 38){
-            client.messages
-                .create({
-                    from: 'whatsapp:+14155238886',
-                    body: `Alta temperatura detectada: ${temp}`,
-                    to: `whatsapp:${process.env.PHONE_NUMBER}`
-                })
-                .then(message => console.log('SMS: ', message.sid));
-        }
+        // const numTemp = parseFloat(temp);
+        // if(numTemp > 38){
+        //     client.messages
+        //         .create({
+        //             from: 'whatsapp:+14155238886',
+        //             body: `Alta temperatura detectada: ${temp}`,
+        //             to: `whatsapp:${process.env.PHONE_NUMBER}`
+        //         })
+        //         .then(message => console.log('SMS: ', message.sid));
+        // }
         return res.status(200).json({ message: 'OK', data: result })
     } catch (error) {
         return res.status(500).send(returnError(error))
