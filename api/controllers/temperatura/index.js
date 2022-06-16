@@ -17,8 +17,8 @@ router.get('/list', async (req, res) => {
 
 router.get('/add/:value', async (req, res) => {
     try {
-        const temp = req.params.value.Replace('C', '');
-        const data = {temperatura: `${temp}°C`}
+        const temp = req.params.value;
+        const data = {temperatura: `${temp}`}
         const result = await Service.Temperatura.addContent(data);
         // const numTemp = parseFloat(temp);
         // if(numTemp > 38){
