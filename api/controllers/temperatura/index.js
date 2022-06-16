@@ -18,8 +18,12 @@ router.get('/list', async (req, res) => {
 router.get('/add/:value', async (req, res) => {
     try {
         const temp = req.params.value;
-        const data = {temperatura: `${temp}`}
+        let respArray = temp.split(' ');
+        const data = {temperatura: `${respArray[3]}`}
         const result = await Service.Temperatura.addContent(data);
+        //Average MLX90640 Temperature: 23.5C (74.4F)
+        
+
         // const numTemp = parseFloat(temp);
         // if(numTemp > 38){
         //     client.messages
