@@ -20,14 +20,15 @@ router.get('/add/:value', async (req, res) => {
         const temp = req.params.value;
         //Average MLX90640 Temperature: 23.5C (74.4F)
         let respArray = temp.split(' ');
-        const data = {temperatura: `${respArray[3].replace('C', '°C')}`}
+        let respFinal = respArray[3].replace('C', '°C');
+        const data = {temperatura: `${respFinal}`}
         const result = await Service.Temperatura.addContent(data);
         const numTemp = parseFloat(temp);
         if(numTemp > 38){
             client.messages
                 .create({
                     from: 'whatsapp:+14155238886',
-                    body: `Alta temperatura detectada: ${temp}`,
+                    body: `Alta temperatura detectada: ${respFinal}`,
                     to: `whatsapp:${process.env.PHONE_NUMBER}`
                 })
                 .then(message => console.log('SMS: ', message.sid));
