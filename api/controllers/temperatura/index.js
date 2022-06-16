@@ -23,7 +23,7 @@ router.get('/add/:value', async (req, res) => {
         let respFinal = respArray[3].replace('C', '°C');
         const data = {temperatura: `${respFinal}`}
         const result = await Service.Temperatura.addContent(data);
-        const numTemp = parseFloat(temp);
+        const numTemp = parseFloat(respArray[3].replace('C', ''));
         if(numTemp > 38){
             client.messages
                 .create({
