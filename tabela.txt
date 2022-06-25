@@ -1,0 +1,8 @@
+CREATE TABLE "temperatura" (
+	"id" INTEGER NOT NULL DEFAULT 'nextval(''temperatura_id_seq''::regclass)',
+	"temperatura" VARCHAR(255) NULL DEFAULT 'NULL::character varying',
+	"data_cadastro" TIMESTAMPTZ NULL DEFAULT 'now()',
+	"data_atualizacao" TIMESTAMPTZ NULL DEFAULT 'now()',
+	"data_delete" TIMESTAMPTZ NULL DEFAULT NULL,
+	PRIMARY KEY ("id")
+)

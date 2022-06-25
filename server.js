@@ -1,3 +1,4 @@
+//importacao das bibliotecas
 const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -16,27 +17,6 @@ const io = require('socket.io')(http, {
 require('dotenv-flow').config({ default_node_env: 'development' });
 
 const port = process.env.PORT || 3000;
-const debug = false;
-
-if (debug) {
-    console.log('host -> ', process.env.DB_HOST)
-    console.log('user-> ', process.env.DB_USER)
-    console.log('pwd -> ', process.env.DB_PASSWORD)
-    console.log('db -> ', process.env.DB_DATABASE)
-}
-
-const db = require('./api/database');
-
-let whitelist = ['http://localhost:3000', 'http://localhost:81'];
-let corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    }
-}
 
 app.use(helmet());
 app.use(compression());
@@ -62,12 +42,12 @@ app.use(function (req, res, next) {
     next()
 });
 
-//ROUTES
+//ROTAS
 const Controller = require('./api/controllers');
 app.use('/api/temperatura', Controller.temperaturaController);
 
-let s = http.listen(port, () => {
-    console.log(`🚀  Server ready at http://localhost:${port}`);
+let conexao = http.listen(port, () => {
+    console.log(`🚀  Server conectado em http://localhost:${port}`);
     //reader;
 });
-s.setTimeout(300000);
+conexao.setTimeout(300000);

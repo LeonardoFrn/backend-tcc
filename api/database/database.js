@@ -6,7 +6,7 @@ const ServicesTemperatura = require('../services/temperatura')
 setTimeout(() => {
   ServicesTemperatura.getContent().then(result => {
     if (!result || !result.temperatura || (result.temperatura && !result.temperatura.length)) {
-      console.log('MySQL is running now!');
+      console.log('PGSQL conectado!');
     }
   })
 }, 1500)
